@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        applicationId "com.paikhantko.mvvm_pagination_test"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        buildConfigField("String","BASE_URL","\"https://corona-virus-stats.herokuapp.com/api/v1/cases/\"")
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures{
+        dataBinding true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    //android support library
+    implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+
+    // getter , setter
+    implementation "org.projectlombok:lombok:$rootProject.lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
+
+    // reactive
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+
+    //rest interaction
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit2Version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit2Version"
+
+    // parser
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit2ConverterGsonVersion"
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+
+    //dependency injection
+    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger2Version"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+}
